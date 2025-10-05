@@ -20,9 +20,9 @@ import { ModeToggle } from "../ModeToggle"
 const navigationLinks = [
   { href: "/", label: "Home", icon: HouseIcon },
   { href: "/about", label: "About", icon: UserIcon },
-  { href: "/projects", label: "Projects", icon: FolderIcon },
-  { href: "/skills", label: "Skills", icon: ZapIcon },
-  { href: "/blogs", label: "Blogs", icon: FileTextIcon },
+  { href: "/project", label: "Projects", icon: FolderIcon },
+  { href: "/skill", label: "Skills", icon: ZapIcon },
+  { href: "/blog", label: "Blogs", icon: FileTextIcon },
 ]
 
 export default function Navbar() {
