@@ -1,6 +1,11 @@
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Metadata } from "next";
+
+const metadata: Metadata = {
+  title: "MAC | About me"
+}
 
 const AboutPage = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/about`, {
@@ -11,7 +16,7 @@ const AboutPage = async () => {
 
   return (
     <>
-  <section className="min-h-[calc(100vh-101px)] w-full py-20 px-4 md:px-12 bg-background">
+  <section className="min-h-[calc(100vh-101px)] w-full py-10 md:py-20 px-4 md:px-12 bg-background">
     <div className="max-w-5xl mx-auto">
       <Card className="bg-muted/40 backdrop-blur-md border border-border shadow-xl">
         <div className="grid grid-cols-1 md:grid-cols-[auto_min-content_1fr] items-center gap-0 p-8 md:gap-x-10">

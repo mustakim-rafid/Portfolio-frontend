@@ -1,22 +1,26 @@
 "use server";
 
+import { cookies } from "next/headers";
+import { revalidateTag } from "next/cache";
+import { redirect } from "next/navigation";
+
 export const formAction = async (formData: FormData) => {
-  const tags = formData.get("tags")?.toString().split(",").map((tag) => tag.trim())
+  const sessionCookie = (await cookies()).get('accessToken')
 
+  const tags = formData.get("tags")?.toString().split(",").map(tag => tag.trim());
   formData.delete("tags");
-  tags?.forEach((tag) => {
-    formData.append("tags", tag)
-  })
+  tags?.forEach(tag => formData.append("tags", tag));
 
-  console.log(formData)
   formData.append("authorId", "1");
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/blog`, {
+  await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/blog`, {
     method: "POST",
     body: formData,
+    headers: {
+      'Cookie': `${sessionCookie?.name}=${sessionCookie?.value}`
+    },
   });
 
-  const data = await res.json();
-
-  console.log(data);
+  revalidateTag("blogs");
+  redirect("/blog");
 };

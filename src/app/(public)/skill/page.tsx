@@ -1,8 +1,13 @@
+import { Metadata } from "next";
 import React from "react";
+
+const metadata: Metadata = {
+  title: "MAC | Skills"
+}
 
 const SkillsPage = () => {
   return (
-    <div className="w-full py-16 px-4 md:px-12 min-h-[calc(100vh-101px)]">
+    <div className="w-full py-8 md:py-16 px-4 md:px-12 min-h-[calc(100vh-101px)]">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-2xl md:text-3xl font-semibold text-center mb-10 text-foreground">
           Tech Stack
