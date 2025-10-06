@@ -14,3 +14,16 @@ export interface IBlog {
         avatar?: string
     }
 }
+
+export interface IProject {
+  id: number;
+  title: string;
+  description: string;
+  thumbnail: string;
+  liveLink: string;
+  repoLink: string;
+  features: string[];
+  techStack: string[];
+  createdAt: Date;
+  updatedAt: Date;
+}

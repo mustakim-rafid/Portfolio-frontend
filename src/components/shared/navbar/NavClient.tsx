@@ -4,6 +4,7 @@ import {
   FileTextIcon,
   FolderIcon,
   Layout,
+  Loader2,
   UserIcon,
   ZapIcon,
 } from "lucide-react";
@@ -24,6 +25,9 @@ import {
 import Link from "next/link";
 import { ModeToggle } from "../ModeToggle";
 import { toast } from "sonner";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 // Navigation links array
 const navigationLinks = [
@@ -34,7 +38,11 @@ const navigationLinks = [
 ];
 
 export default function NavClient({ isAuth }: { isAuth: boolean }) {
+  const pathname = usePathname()
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
+
   const handleLogout = async () => {
+    setIsLoggingOut(true)
     try {
       const res = await fetch("/api/logout", {
         method: "POST",
@@ -49,6 +57,8 @@ export default function NavClient({ isAuth }: { isAuth: boolean }) {
       }
     } catch (error) {
       console.error("Error: Logout failed ", error);
+    } finally {
+      setIsLoggingOut(false)
     }
   };
 
@@ -146,7 +156,10 @@ export default function NavClient({ isAuth }: { isAuth: boolean }) {
                     <NavigationMenuLink
                       asChild
                       href={link.href}
-                      className="text-foreground hover:text-primary flex-row items-center gap-2 py-1.5 font-medium"
+                      className={cn(
+                        "text-foreground hover:text-primary flex-row items-center gap-2 py-1.5 font-medium",
+                        pathname.startsWith(link.href) ? "bg-muted" : ""
+                      )}
                     >
                       <Link href={link.href}>
                         <Icon
@@ -198,7 +211,7 @@ export default function NavClient({ isAuth }: { isAuth: boolean }) {
                 variant="destructive"
                 className="dark:text-black font-semibold cursor-pointer"
               >
-                Logout
+                {isLoggingOut ? (<Loader2 className="w-5 h-5 animate-spin" />) : "Logout"}
               </Button>
             </>
           ) : (

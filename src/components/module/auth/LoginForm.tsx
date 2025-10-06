@@ -19,6 +19,7 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export const loginSchema = z.object({
   email: z.email(),
@@ -133,6 +134,9 @@ const LoginForm = () => {
           </Button>
         </form>
       </Form>
+      <Link className="text-center" href="/">
+       <Button variant="link" className="cursor-pointer">Home</Button>
+      </Link>
     </>
   );
 };

@@ -70,7 +70,7 @@ export const BackgroundBeamsWithCollision = ({
     <div
       ref={parentRef}
       className={cn(
-        "bg-gradient-to-b from-white to-neutral-100 dark:from-neutral-950 dark:to-neutral-800 relative flex w-full justify-center overflow-hidden",
+        "bg-gradient-to-b from-white to-green-100 dark:from-green-950 dark:to-black relative flex w-full justify-center overflow-hidden",
         // h-screen if you want bigger
         className
       )}
@@ -200,7 +200,7 @@ const CollisionMechanism = React.forwardRef<
           repeatDelay: beamOptions.repeatDelay || 0,
         }}
         className={cn(
-          "absolute left-0 top-20 m-auto h-14 w-px rounded-full bg-gradient-to-t from-indigo-500 via-purple-500 to-transparent",
+          "absolute left-0 top-20 m-auto h-14 w-px rounded-full bg-gradient-to-t from-indigo-500 via-green-500 to-transparent",
           beamOptions.className
         )}
       />
@@ -251,7 +251,7 @@ const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
             opacity: 0,
           }}
           transition={{ duration: Math.random() * 1.5 + 0.5, ease: "easeOut" }}
-          className="absolute h-1 w-1 rounded-full bg-gradient-to-b from-indigo-500 to-purple-500"
+          className="absolute h-1 w-1 rounded-full bg-gradient-to-b from-indigo-500 to-green-500"
         />
       ))}
     </div>

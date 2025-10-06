@@ -4,7 +4,7 @@ import { useFormStatus } from "react-dom";
 
 const BlogForm = () => {
   return (
-    <form action={formAction} className="space-y-6 w-full max-w-2xl">
+    <form action={formAction} className="space-y-6 w-full max-w-2xl pt-5">
       <div className="space-y-2">
         <label htmlFor="title" className="text-sm font-medium text-foreground">
           Title

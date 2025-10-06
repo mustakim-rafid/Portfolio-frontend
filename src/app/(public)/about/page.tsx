@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Metadata } from "next";
 
-const metadata: Metadata = {
+export const metadata: Metadata = {
   title: "MAC | About me"
 }
 

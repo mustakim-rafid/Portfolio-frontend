@@ -3,10 +3,29 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Home, FileText, LogOut, Menu } from "lucide-react";
+import { Home, FileText, LogOut, Menu, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
+
+  const handleLogout = async () => {
+    try {
+      const res = await fetch("/api/logout", {
+        method: "POST",
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        toast.success(data.message || "User logged out successfully");
+        window.location.reload()
+      } else {
+        toast.error(data.message || "Logout failed");
+      }
+    } catch (error) {
+      console.error("Error: Logout failed ", error);
+    }
+  };
 
   return (
     <>
@@ -25,17 +44,45 @@ export default function Sidebar() {
         } md:translate-x-0 md:flex`}
       >
         <nav className="flex flex-col space-y-2 flex-1">
-          <Button asChild variant="default" size="lg" className="justify-start dark:text-black font-semibold cursor-pointer">
-            <Link href="/admin/dashboard" onClick={() => setOpen(false)}>
+          <Button
+            asChild
+            variant="default"
+            size="lg"
+            className="justify-start dark:text-black font-semibold cursor-pointer"
+          >
+            <Link href="/" onClick={() => setOpen(false)}>
               <Home className="w-5 h-5 mr-3" />
-              Welcome
+              Home
             </Link>
           </Button>
 
-          <Button asChild variant="default" size="lg" className="justify-start dark:text-black font-semibold cursor-pointer">
-            <Link href="/admin/dashboard/create-blog" onClick={() => setOpen(false)}>
+          <Button
+            asChild
+            variant="default"
+            size="lg"
+            className="justify-start dark:text-black font-semibold cursor-pointer"
+          >
+            <Link
+              href="/admin/dashboard/create-blog"
+              onClick={() => setOpen(false)}
+            >
               <FileText className="w-5 h-5 mr-3" />
               Create Blog
+            </Link>
+          </Button>
+
+          <Button
+            asChild
+            variant="default"
+            size="lg"
+            className="justify-start dark:text-black font-semibold cursor-pointer"
+          >
+            <Link
+              href="/admin/dashboard/delete-blog"
+              onClick={() => setOpen(false)}
+            >
+              <Trash2 className="w-5 h-5 mr-3" />
+              Delete Blog
             </Link>
           </Button>
         </nav>
@@ -44,7 +91,7 @@ export default function Sidebar() {
           variant="destructive"
           size="lg"
           className="mt-auto justify-start text-background cursor-pointer font-semibold"
-          onClick={() => alert("Logging out...")}
+          onClick={handleLogout}
         >
           <LogOut className="w-5 h-5 mr-3" />
           Logout
