@@ -3,13 +3,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Home, FileText, LogOut, Menu, Trash2 } from "lucide-react";
+import { Home, FileText, LogOut, Menu, Trash2, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
 
   const handleLogout = async () => {
+    setIsLoggingOut(true)
     try {
       const res = await fetch("/api/logout", {
         method: "POST",
@@ -24,6 +26,8 @@ export default function Sidebar() {
       }
     } catch (error) {
       console.error("Error: Logout failed ", error);
+    } finally {
+      setIsLoggingOut(false)
     }
   };
 
@@ -93,8 +97,13 @@ export default function Sidebar() {
           className="mt-auto justify-start text-background cursor-pointer font-semibold"
           onClick={handleLogout}
         >
-          <LogOut className="w-5 h-5 mr-3" />
-          Logout
+          {
+            isLoggingOut ? (<Loader2 className="w-5 h-5 animate-spin" />) : (
+              <>
+              <LogOut className="w-5 h-5 mr-3" /> Logout
+              </>
+            )
+          }
         </Button>
       </div>
     </>

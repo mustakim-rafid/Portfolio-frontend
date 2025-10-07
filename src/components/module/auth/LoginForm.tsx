@@ -135,7 +135,7 @@ const LoginForm = () => {
         </form>
       </Form>
       <Link className="text-center" href="/">
-       <Button variant="link" className="cursor-pointer">Home</Button>
+       <Button variant="link" className="cursor-pointer">Back To Home</Button>
       </Link>
     </>
   );

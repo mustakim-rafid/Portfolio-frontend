@@ -20,8 +20,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "MAC | Home",
-  description: "MAC - Mustakim Ali Chowdhury's Portfolio",
+  title: "MAC | Full Stack Web Engineer",
+  description: "Mustakim Ali Chowdhury | Full Stack Web Engineer",
+  icons: '/favicon.png'
 };
 
 export default function RootLayout({

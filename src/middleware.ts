@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
   if (!token && request.nextUrl.pathname.startsWith('/admin/dashboard')) {
     return NextResponse.redirect(new URL("/admin-login", request.url));
   }
-  if (token && request.nextUrl.pathname.startsWith('/admin-logout')) {
+  if (token && request.nextUrl.pathname.startsWith('/admin-login')) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 }

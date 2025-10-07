@@ -10,7 +10,7 @@ const SkillsPage = () => {
     <div className="w-full py-8 md:py-16 px-4 md:px-12 min-h-[calc(100vh-101px)]">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-2xl md:text-3xl font-semibold text-center mb-10 text-foreground">
-          Tech Stack
+          Technical Skills
         </h2>
 
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6">
