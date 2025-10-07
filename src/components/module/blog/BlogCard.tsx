@@ -1,6 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { IBlog } from "@/types";
+import Image from "next/image";
 import Link from "next/link";
 
 export function BlogCard({ BlogContent }: { BlogContent: IBlog }) {
@@ -28,9 +29,9 @@ export function BlogCard({ BlogContent }: { BlogContent: IBlog }) {
           style={{ backgroundImage: `url(${BlogContent.thumbnail})` }}
         >
           <div className="flex flex-row items-center space-x-4 z-10">
-            <img
-              height="100"
-              width="100"
+            <Image
+              height={100}
+              width={100}
               alt="Avatar"
               src={
                 BlogContent.owner?.avatar ||

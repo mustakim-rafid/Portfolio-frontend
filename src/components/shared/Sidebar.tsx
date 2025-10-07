@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Home, FileText, LogOut, Menu, Trash2, Loader2 } from "lucide-react";
+import { Home, FileText, LogOut, Menu, Trash2, Loader2, Upload } from "lucide-react";
 import { toast } from "sonner";
 
 export default function Sidebar() {
@@ -87,6 +87,21 @@ export default function Sidebar() {
             >
               <Trash2 className="w-5 h-5 mr-3" />
               Delete Blog
+            </Link>
+          </Button>
+
+          <Button
+            asChild
+            variant="default"
+            size="lg"
+            className="justify-start dark:text-black font-semibold cursor-pointer"
+          >
+            <Link
+              href="/admin/dashboard/update-blog"
+              onClick={() => setOpen(false)}
+            >
+              <Upload className="w-5 h-5 mr-3" />
+              Update Blog
             </Link>
           </Button>
         </nav>

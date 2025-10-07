@@ -14,7 +14,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { adminLogin } from "@/actions/login";
 import { toast } from "sonner";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
@@ -41,17 +40,14 @@ const LoginForm = () => {
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     setIsSubmitting(true);
     try {
-      const res = await fetch(
-        "/api/login",
-        {
-          method: "POST",
-          body: JSON.stringify(values),
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        }
-      );
+      const res = await fetch("/api/login", {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
       const data = await res.json();
       if (!data?.success) {
         toast.error(data?.message);
@@ -59,9 +55,13 @@ const LoginForm = () => {
         toast.success(data?.message || "User logged in successfully");
         router.replace("/admin/dashboard");
       }
-    } catch (error: any) {
-      console.error("Error while login ", error);
-      toast.error(error?.message || "Error: Login Failed");
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Error while login ", error);
+        toast.error(error?.message || "Error: Login Failed");
+      } else {
+        console.error("Error while login", error);
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -135,7 +135,9 @@ const LoginForm = () => {
         </form>
       </Form>
       <Link className="text-center" href="/">
-       <Button variant="link" className="cursor-pointer">Back To Home</Button>
+        <Button variant="link" className="cursor-pointer">
+          Back To Home
+        </Button>
       </Link>
     </>
   );

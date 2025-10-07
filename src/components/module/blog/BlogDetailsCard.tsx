@@ -32,7 +32,7 @@ const BlogDetailsCard = ({ BlogContent }: { BlogContent: IBlog }) => {
       </div>
 
       <div className="prose prose-sm sm:prose-base max-w-none text-muted-foreground">
-        <p>{BlogContent.content}</p>
+        <p className="text-justify">{BlogContent.content}</p>
       </div>
 
       <div className="flex flex-wrap gap-2">

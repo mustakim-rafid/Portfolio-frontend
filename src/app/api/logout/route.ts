@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest) {
+export async function POST() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/logout`, {
       method: "POST",

@@ -1,7 +1,7 @@
 import DeleteCard from "@/components/module/blog/DeleteCard";
 import { IBlog } from "@/types";
 
-const page = async () => {
+const DeleteBlogPage = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/blog`);
   const { data } = await res.json();
 
@@ -21,4 +21,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default DeleteBlogPage;

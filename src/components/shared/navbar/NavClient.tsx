@@ -25,9 +25,9 @@ import {
 import Link from "next/link";
 import { ModeToggle } from "../ModeToggle";
 import { toast } from "sonner";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Navigation links array
 const navigationLinks = [
@@ -40,6 +40,11 @@ const navigationLinks = [
 export default function NavClient({ isAuth }: { isAuth: boolean }) {
   const pathname = usePathname()
   const [isLoggingOut, setIsLoggingOut] = useState(false)
+  const router = useRouter()
+
+  useEffect(() => {
+    router.refresh()
+  }, [isAuth])
 
   const handleLogout = async () => {
     setIsLoggingOut(true)

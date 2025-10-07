@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Nunito } from "next/font/google";
@@ -8,13 +7,6 @@ import { Toaster } from "@/components/ui/sonner";
 const nunito = Nunito({
   subsets: ["latin"],
   variable: "--font-nunito",
-  weight: ["400", "700"],
-  style: ["normal"],
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  variable: "--font-poppins",
   weight: ["400", "700"],
   style: ["normal"],
 });
