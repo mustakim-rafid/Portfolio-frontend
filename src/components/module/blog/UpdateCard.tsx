@@ -2,10 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { IBlog } from "@/types";
-import { Edit, Loader2, Trash2 } from "lucide-react";
+import { Edit } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import { toast } from "sonner";
 import {
   Dialog,
   DialogClose,
@@ -26,7 +25,6 @@ const UpdateCard = ({
 }: {
   updateCardItems: Pick<IBlog, "id" | "title" | "thumbnail" | "content">;
 }) => {
-  const [isDeleting, setIsDeleting] = useState(false);
 
   return (
     <div className="flex items-center justify-between p-4 bg-background border border-muted rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">

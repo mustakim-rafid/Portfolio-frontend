@@ -2,7 +2,6 @@
 
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 export const updateBlog = async (formData: FormData) => {
   const sessionCookie = (await cookies()).get("accessToken");
