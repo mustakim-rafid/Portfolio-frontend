@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { IBlog } from "@/types";
 import { Edit } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
 import {
   Dialog,
   DialogClose,

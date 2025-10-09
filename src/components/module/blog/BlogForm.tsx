@@ -1,7 +1,23 @@
 "use client"
-import { formAction } from "@/actions/create";
+import { createBlog } from "@/actions/create";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const BlogForm = () => {
+  const router = useRouter()
+
+  const formAction = async (formData: FormData) => {
+    const result = await createBlog(formData)
+
+    if (result?.error) {
+      toast.error(result.error)
+      console.log(result)
+    } else {
+      toast.success("Blog created successfully")
+      router.push("/blog")
+    }
+  }
+
   return (
     <form action={formAction} className="space-y-6 w-full max-w-2xl pt-5">
       <div className="space-y-2">
