@@ -12,20 +12,23 @@ export async function POST(req: NextRequest) {
       },
       credentials: "include",
     });
-    const data = await res.json()
 
-    const setCookie = res.headers.get('set-cookie')
+    const data = await res.json();
 
-    const headers = new Headers()
+    const response = NextResponse.json(data);
 
-    if (setCookie) {
-      headers.set('set-cookie', setCookie)
+    if (data.success) {
+      response.cookies.set({
+        name: "accessToken",
+        value: data.data.accessToken,
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        maxAge: 24 * 60 * 60,
+      });
     }
 
-    return NextResponse.json(JSON.stringify(data), {
-      status: res.status,
-      headers
-    })
+    return response;
   } catch (error) {
     console.error("Error while login", error);
   }
