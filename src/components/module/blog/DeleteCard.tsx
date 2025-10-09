@@ -1,5 +1,6 @@
 "use client";
 
+import { deleteBlog } from "@/actions/delete";
 import { Button } from "@/components/ui/button";
 import { IBlog } from "@/types";
 import { Loader2, Trash2 } from "lucide-react";
@@ -17,21 +18,14 @@ const DeleteCard = ({
   const handleBlogDelete = async (id: number) => {
     setIsDeleting(true);
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/blog/${id}`,
-        {
-          method: "DELETE",
-          credentials: "include"
-        }
-      );
-      const data = await res.json();
+      const data = await deleteBlog(id)
       if (data.success) {
         toast.success(data.message);
       } else {
         toast.error(data.message);
       }
-      window.location.reload();
     } catch (error) {
+      toast.error("Error while deleting blog")
       console.error("Error while deleting blog ", error);
     } finally {
       setIsDeleting(false);
